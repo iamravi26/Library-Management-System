@@ -33,7 +33,7 @@ Gender = (
 class UserProfile(Base):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30, null=True, blank=True)
-    image = models.ImageField(upload_to="profile/", null=True, blank=True)
+    # image = models.ImageField(upload_to="profile/", null=True, blank=True)
     phone_code = models.ForeignKey(PhoneCode, on_delete=models.SET_NULL, null=True, blank=True)
     mobile = models.IntegerField(null=True, blank=True)
     gender = models.CharField(Gender, max_length=50, null=True, blank=True)
@@ -99,8 +99,8 @@ class Books(Base):
 
 
 class Landing(Base):
-    user = models.ForeignKey(UserProfile, null=True, blank=True)
-    book = models.ForeignKey(Books, null=True, blank=True)
+    user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True)
+    book = models.ForeignKey(Books, on_delete=models.SET_NULL, null=True, blank=True)
     returned = models.BooleanField(default=False)
 
     def __str__(self):

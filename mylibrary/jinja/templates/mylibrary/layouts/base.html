@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% include 'includes/head.html' %}
+
+    <!-- Specific Page CSS goes HERE  -->
+    {% block stylesheets %}{% endblock stylesheets %}
+        
+</head>
+<body class="">
+
+    <div class="wrapper">
+
+        {% include 'includes/sidebar.html' %}
+
+        <div class="main-panel">
+
+            {% include 'includes/navigation.html' %}
+
+            {% block content %}{% endblock content %}
+
+            {% include 'includes/footer.html' %}
+
+        </div>
+    </div>
+
+    {% include 'includes/fixed-plugin.html' %}
+
+    {% include 'includes/scripts.html' %}
+
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
+</body>
+</html>

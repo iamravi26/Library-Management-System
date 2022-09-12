@@ -9,4 +9,7 @@ def index(request):
     return HttpResponse("Welcome to My Library")
 
 def login(request):
-    return HttpResponse("Welcome to login Page")
+    context = {
+        "title":"Login"
+    }
+    return render(request, "mylibrary/account/login.html", context)
