@@ -1,8 +1,3 @@
-from distutils.command.upload import upload
-from statistics import quantiles
-from turtle import onclick
-from unicodedata import name
-from django.db import models
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -31,12 +26,14 @@ Gender = (
 )
 
 class UserProfile(Base):
+    unique_id = models.CharField(max_length=10, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30, null=True, blank=True)
     # image = models.ImageField(upload_to="profile/", null=True, blank=True)
     phone_code = models.ForeignKey(PhoneCode, on_delete=models.SET_NULL, null=True, blank=True)
     mobile = models.IntegerField(null=True, blank=True)
     gender = models.CharField(Gender, max_length=50, null=True, blank=True)
+    staff = models.BooleanField(default=False)
     verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
 
@@ -59,12 +56,13 @@ class Category(Base):
         return self.name
 
 
-class Books(Base):
-    unique_id = models.CharField(max_length=10, null=True, blank=True)
+class BooksInventry(Base):
+    book_id = models.CharField(max_length=10, null=True, blank=True)
     name = models.CharField(max_length=50, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     author = models.CharField(max_length=50, null=True, blank=True)
     quantity = models.PositiveIntegerField(null=True, blank=True)
+    published = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
@@ -100,7 +98,7 @@ class Books(Base):
 
 class Landing(Base):
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True)
-    book = models.ForeignKey(Books, on_delete=models.SET_NULL, null=True, blank=True)
+    book = models.ForeignKey(BooksInventry, on_delete=models.SET_NULL, null=True, blank=True)
     returned = models.BooleanField(default=False)
 
     def __str__(self):

@@ -3,7 +3,7 @@
 
 <head>
 
-    {% include 'includes/head.html' %}
+    {% include 'mylibrary/includes/head.html' %}
 
     <!-- Specific Page CSS goes HERE  -->
     {% block stylesheets %}{% endblock stylesheets %}
@@ -13,22 +13,22 @@
 
     <div class="wrapper">
 
-        {% include 'includes/sidebar.html' %}
+        {% include 'mylibrary/includes/sidebar.html' %}
 
         <div class="main-panel">
 
-            {% include 'includes/navigation.html' %}
+            {% include 'mylibrary/includes/navigation.html' %}
 
             {% block content %}{% endblock content %}
 
-            {% include 'includes/footer.html' %}
+            {% include 'mylibrary/includes/footer.html' %}
 
         </div>
     </div>
 
-    {% include 'includes/fixed-plugin.html' %}
+    {% include 'mylibrary/includes/fixed-plugin.html' %}
 
-    {% include 'includes/scripts.html' %}
+    {% include 'mylibrary/includes/scripts.html' %}
 
     <!-- Specific Page JS goes HERE  -->
     {% block javascripts %}{% endblock javascripts %}
