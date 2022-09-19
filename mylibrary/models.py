@@ -30,6 +30,7 @@ class UserProfile(Base):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30, null=True, blank=True)
     # image = models.ImageField(upload_to="profile/", null=True, blank=True)
+    resume = models.FileField(upload_to='resume/', null=True, blank=True)
     phone_code = models.ForeignKey(PhoneCode, on_delete=models.SET_NULL, null=True, blank=True)
     mobile = models.IntegerField(null=True, blank=True)
     gender = models.CharField(Gender, max_length=50, null=True, blank=True)
@@ -38,7 +39,7 @@ class UserProfile(Base):
     is_active = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user
+        return self.unique_id
     
     @property
     def fname(self):
